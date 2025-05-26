@@ -1,13 +1,13 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { PUBLIC_API_URL } from '$env/static/public';
 
 interface Config {
 	apiUrl: string;
 }
 
 const config: Config = {
-	apiUrl: process.env.PUBLIC_API_URL || "http://localhost:3000",
+	apiUrl: PUBLIC_API_URL || "http://localhost:3000",
 };
+
+console.log(config.apiUrl)
 
 export default config;

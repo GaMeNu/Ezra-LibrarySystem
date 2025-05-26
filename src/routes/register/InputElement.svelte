@@ -15,7 +15,7 @@
 	<div class="inputWrapper">
 		<label class="inputLabel" for="{eltId}">{label}</label>
 		<div class="inputContainer">
-			<input class="inputBox" id={eltId} type="{type}" bind:value>
+			<input class="inputBox" id={eltId} type="{type}" name="{name}" bind:value>
 		</div>
 	</div>
 </div>

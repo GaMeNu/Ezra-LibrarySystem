@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
+	import type {PageProps} from './$types';
 	import InputElement from './InputElement.svelte';
+	let {data, form}: PageProps = $props()
 </script>
 
 <svelte:head>
@@ -9,16 +11,18 @@
 </svelte:head>
 <section>
 	<div>
-		<form class="registerForm">
+		<form method="POST" action="?/register" class="registerForm">
 
 			<InputElement class="inputElement" name="name" label="Name" />
 
 			<InputElement class="inputElement" name="username" label="Username" />
 
-			<InputElement class="inputElement" name="phone_number" type="tel" label="Phone Number" />
-
 			<button class="registerButton" type="submit">Register</button>
 		</form>
+		{#if form?.success}
+			<p>Register button pressed!</p>
+			<p>Name: {JSON.stringify(form)}</p>
+		{/if}
 	</div>
 </section>
 
