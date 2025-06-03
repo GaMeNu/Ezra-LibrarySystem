@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type {PageProps} from './$types';
 	import InputElement from './InputElement.svelte';
-	let {data, form}: PageProps = $props()
+	let {form}: PageProps = $props()
 </script>
 
 <svelte:head>
@@ -13,15 +13,36 @@
 	<div>
 		<form method="POST" action="?/register" class="registerForm">
 
-			<InputElement class="inputElement" name="name" label="Name" />
+			<InputElement
+				class="inputElement"
+				name="name"
+				label="שם תצוגה" />
 
-			<InputElement class="inputElement" name="username" label="Username" />
+			<InputElement
+				class="inputElement"
+				name="username"
+				label="שם משתמש" />
+			<InputElement
+				class="inputElement"
+				name="password"
+				type="password"
+				label="סיסמה" />
+			<InputElement
+				class="inputElement"
+				name="conf_password"
+				type="password"
+				label="אישור סיסמה" />
 
 			<button class="registerButton" type="submit">Register</button>
 		</form>
+
 		{#if form?.success}
-			<p>Register button pressed!</p>
-			<p>Name: {JSON.stringify(form)}</p>
+			<p>Registered successfully!</p>
+			<p>response: {JSON.stringify(form.response)}</p>
+		{/if}
+		{#if !(form?.success)}
+			<p>Failed to register</p>
+			<p>Response: {JSON.stringify(form?.response)}</p>
 		{/if}
 	</div>
 </section>
@@ -48,7 +69,26 @@
 	}
 
 	.registerButton {
+			margin-top: 1rem;
+			width: auto;
+			scale: 1.5;
 			text-align: center;
+			padding: 0.5rem 1rem;
+			border: 1px black solid;
+			border-radius: 0.5em;
+			transition-property: scale, background-color;
+			transition-duration: 0.1s;
+			transition-timing-function: ease-in-out;
+  }
+
+	.registerButton:hover {
+
+      transition-property: scale, background-color;
+      transition-duration: 0.1s;
+      transition-timing-function: ease-in-out;
+
+      cursor: pointer;
+			scale: 1.6;
 	}
 
 

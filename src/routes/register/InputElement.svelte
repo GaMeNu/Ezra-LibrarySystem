@@ -27,14 +27,14 @@
 				margin: 1rem;
         overflow: visible;
 				width: auto;
+				text-align: right;
     }
 
 		.inputLabel {
 				display: inline-block;
-				margin-right: 1rem;
 				vertical-align: center;
-				width: auto;
-				text-align: center;
+				width: inherit;
+				text-align: right;
 				padding-bottom: 0.5em;
 		}
 
