@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type {PageProps} from './$types';
-	import InputElement from './InputElement.svelte';
+	import InputElement from '../../componenets/ui/InputElement.svelte';
 	let {form}: PageProps = $props()
 </script>
 
@@ -33,7 +33,7 @@
 				type="password"
 				label="אישור סיסמה" />
 
-			<button class="registerButton" type="submit">Register</button>
+			<button class="loginButton" type="submit">Register</button>
 		</form>
 
 		{#if form?.success}
@@ -68,7 +68,7 @@
 			justify-content: center;
 	}
 
-	.registerButton {
+	.loginButton {
 			margin-top: 1rem;
 			width: auto;
 			scale: 1.5;
@@ -81,7 +81,7 @@
 			transition-timing-function: ease-in-out;
   }
 
-	.registerButton:hover {
+	.loginButton:hover {
 
       transition-property: scale, background-color;
       transition-duration: 0.1s;
