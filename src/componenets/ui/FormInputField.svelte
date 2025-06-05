@@ -3,6 +3,7 @@
 		label,
 		name,
 		type = "text",
+		form,
 		class: className = ""
 	} = $props();
 
@@ -17,6 +18,9 @@
 		<div class="inputContainer">
 			<input class="inputBox" id={eltId} type="{type}" name="{name}" bind:value>
 		</div>
+		{#if !(form?.success) && (form?.response?.offending_field === name)}
+			<label class="errLabel" for="{eltId}">{form?.response?.message}</label>
+		{/if}
 	</div>
 </div>
 

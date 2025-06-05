@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type {PageProps} from './$types';
-	import InputElement from '../../componenets/ui/InputElement.svelte';
+	import InputElement from '../../componenets/ui/FormInputField.svelte';
 	let {form}: PageProps = $props()
 </script>
 
@@ -16,12 +16,16 @@
 			<InputElement
 				class="inputElement"
 				name="username"
-				label="שם משתמש" />
+				label="שם משתמש"
+				{form}
+			/>
 			<InputElement
 				class="inputElement"
 				name="password"
 				type="password"
-				label="סיסמה" />
+				label="סיסמה"
+				{form}
+			/>
 
 			<button class="loginButton" type="submit">Login</button>
 		</form>

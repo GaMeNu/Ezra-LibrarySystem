@@ -1,7 +1,20 @@
 <script lang="ts">
+	import { enhance, applyAction } from '$app/forms';
 	import type {PageProps} from './$types';
-	import InputElement from '../../componenets/ui/InputElement.svelte';
+	import InputElement from '../../componenets/ui/FormInputField.svelte';
 	let {form}: PageProps = $props()
+	let debugText = $state("");
+
+	function setErrorField(element, form) {
+		let name = element.getAttribute('name');
+		let offending_field = form?.response?.offending_field
+		if (offending_field != null) {
+			element.errMessage
+		}
+
+	}
+
+
 </script>
 
 <svelte:head>
@@ -11,27 +24,43 @@
 </svelte:head>
 <section>
 	<div>
-		<form method="POST" action="?/register" class="registerForm">
+		<form method="POST" action="?/register" class="registerForm"
+		use:enhance={({formElement, formData, action, cancel, submitter}) => {
+			return async ({result, update}) => {
+				debugText = JSON.stringify(result)
+				update({reset: false, invalidateAll: false});
+			}
+		}}>
 
 			<InputElement
 				class="inputElement"
-				name="name"
-				label="שם תצוגה" />
+				name="display_name"
+				label="שם תצוגה"
+				{form}
+			/>
 
 			<InputElement
 				class="inputElement"
 				name="username"
-				label="שם משתמש" />
+				label="שם משתמש"
+				{form}
+			/>
+
 			<InputElement
 				class="inputElement"
 				name="password"
 				type="password"
-				label="סיסמה" />
+				label="סיסמה"
+				{form}
+			/>
+
 			<InputElement
 				class="inputElement"
 				name="conf_password"
 				type="password"
-				label="אישור סיסמה" />
+				label="אישור סיסמה"
+				{form}
+			/>
 
 			<button class="loginButton" type="submit">Register</button>
 		</form>
@@ -44,6 +73,9 @@
 			<p>Failed to register</p>
 			<p>Response: {JSON.stringify(form?.response)}</p>
 		{/if}
+	</div>
+	<div>
+		{debugText}
 	</div>
 </section>
 
